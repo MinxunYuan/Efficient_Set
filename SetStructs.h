@@ -1,19 +1,22 @@
 // COMP2521 22T2 Assignment 1
 
 // DO NOT CHANGE THE NAME OF THIS STRUCT
-struct node {
+typedef struct node {
 	int item;           // DO NOT CHANGE/REMOVE THIS FIELD
 	struct node *left;  // DO NOT CHANGE/REMOVE THIS FIELD
 	struct node *right; // DO NOT CHANGE/REMOVE THIS FIELD
 	
 	// You may add more fields here if needed
-};
+	int height;
+} TreeNode;
+// typedef struct node TreeNode;
 
 // DO NOT CHANGE THE NAME OF THIS STRUCT
 struct set {
 	struct node *tree;  // DO NOT CHANGE/REMOVE THIS FIELD
 
 	// You may add more fields here if needed
+	int size;
 };
 
 // You may define more structs here if needed 
