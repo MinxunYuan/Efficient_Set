@@ -8,16 +8,20 @@
 
 #include "Set.h"
 #include "SetStructs.h"
+#include "AVLTree.h"
 
 ////////////////////////////////////////////////////////////////////////
 // Basic Operations
+
+// typedef struct set *Set;
 
 /**
  * Creates a new empty set
  */
 Set SetNew(void) {
-	// TODO
-	return NULL;
+	Set set = malloc(sizeof(*set));
+	(*set) = (struct set){ .tree = NULL };
+	return set;
 }
 
 /**
@@ -31,15 +35,22 @@ void SetFree(Set s) {
  * Inserts an item into the set
  */
 void SetInsert(Set s, int item) {
-	// TODO
+	// set should be valid
+	assert(s);
+	bool flg = false;
+	s->tree = treeInsert(s->tree, item, &flg);
+
+	// Check whether an distinct element has been inserted
+	if (flg) {
+		s->size++;
+	}
 }
 
 /**
  * Returns the number of elements in the set
  */
 int SetSize(Set s) {
-	// TODO
-	return -1;
+	return s->size;
 }
 
 /**
@@ -109,7 +120,7 @@ int SetFloor(Set s, int item) {
 	return UNDEFINED;
 }
 
-/** 
+/**
  * Returns the ceiling of a given item in a set
  */
 int SetCeiling(Set s, int item) {
